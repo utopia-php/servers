@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ba764a6a1717fde88dc3e8d1ba4a3cc",
+    "content-hash": "5e2e2225afbe451623a05005265a57ee",
     "packages": [
         {
             "name": "utopia-php/cli",
@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/utopia-php/di.git",
-                "reference": "0bb7af5693bc131f4d2ce34d3f732d41e6637679"
+                "reference": "7a1d7fde799406a05c0f34d53857f200e3cd3602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/utopia-php/di/zipball/0bb7af5693bc131f4d2ce34d3f732d41e6637679",
-                "reference": "0bb7af5693bc131f4d2ce34d3f732d41e6637679",
+                "url": "https://api.github.com/repos/utopia-php/di/zipball/7a1d7fde799406a05c0f34d53857f200e3cd3602",
+                "reference": "7a1d7fde799406a05c0f34d53857f200e3cd3602",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +115,7 @@
                 "source": "https://github.com/utopia-php/di/tree/main",
                 "issues": "https://github.com/utopia-php/di/issues"
             },
-            "time": "2024-04-08T22:41:41+00:00"
+            "time": "2024-04-18T20:01:54+00:00"
         },
         {
             "name": "utopia-php/framework",
