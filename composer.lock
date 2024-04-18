@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e2e2225afbe451623a05005265a57ee",
+    "content-hash": "775cc9e5bea1688a025fbe87fd497838",
     "packages": [
         {
             "name": "utopia-php/cli",
@@ -54,68 +54,6 @@
                 "source": "https://github.com/utopia-php/cli/tree/0.17.0"
             },
             "time": "2024-01-24T11:37:29+00:00"
-        },
-        {
-            "name": "utopia-php/di",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/utopia-php/di.git",
-                "reference": "7a1d7fde799406a05c0f34d53857f200e3cd3602"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/utopia-php/di/zipball/7a1d7fde799406a05c0f34d53857f200e3cd3602",
-                "reference": "7a1d7fde799406a05c0f34d53857f200e3cd3602",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.2",
-                "phpbench/phpbench": "^1.2",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^9.5.25",
-                "swoole/ide-helper": "4.8.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Utopia\\": "src/",
-                    "Tests\\E2E\\": "tests/e2e"
-                }
-            },
-            "scripts": {
-                "lint": [
-                    "vendor/bin/pint --test"
-                ],
-                "format": [
-                    "vendor/bin/pint"
-                ],
-                "check": [
-                    "vendor/bin/phpstan analyse -c phpstan.neon"
-                ],
-                "test": [
-                    "vendor/bin/phpunit --configuration phpunit.xml"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A simple and lite library for managing dependency injections",
-            "keywords": [
-                "framework",
-                "http",
-                "php",
-                "upf"
-            ],
-            "support": {
-                "source": "https://github.com/utopia-php/di/tree/main",
-                "issues": "https://github.com/utopia-php/di/issues"
-            },
-            "time": "2024-04-18T20:01:54+00:00"
         },
         {
             "name": "utopia-php/framework",
@@ -2034,9 +1972,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "utopia-php/di": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
