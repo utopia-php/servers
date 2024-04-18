@@ -1,0 +1,42 @@
+{
+    "name": "utopia-php/servers",
+    "description": "A base library for building Utopia style servers.",
+    "type": "library",
+    "keywords": ["php","framework", "upf", "utopia", "servers"],
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Team Appwrite",
+            "email": "team@appwrite.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Utopia\\Queue\\": "src/Servers"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Tests\\E2E\\": "tests/Servers/Unit"}
+    },
+    "scripts":{
+        "test": "phpunit",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint",
+        "lint": "vendor/bin/pint --test"
+    },
+    "require": {
+        "php": ">=8.0",
+        "utopia-php/cli": "0.17.*",
+        "utopia-php/di": "dev-main"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.5",
+        "laravel/pint": "^0.2.3",
+        "phpstan/phpstan": "^1.8"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/utopia-php/di"
+        }
+    ]
+}
