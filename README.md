@@ -1,4 +1,4 @@
-# Utopia Queue
+# Utopia Servers
 
 [![Build Status](https://travis-ci.com/utopia-php/queue.svg?branch=main)](https://travis-ci.com/utopia-php/queue)
 ![Total Downloads](https://img.shields.io/packagist/dt/utopia-php/queue.svg)
