@@ -169,10 +169,13 @@ abstract class Base
 
     /**
      * Set Container
+     * 
+     * @return $this
      */
-    public function setContainer(Container $container): void
+    public function setContainer(Container $container): self
     {
         $this->container = $container;
+        return $this;
     }
 
     /**
