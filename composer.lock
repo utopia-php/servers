@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/utopia-php/di.git",
-                "reference": "fb3c45b268018b87dcbbf87ad943ced9eea3bbe2"
+                "reference": "a0c8be65c19570c80e904d58f54bdd901d1d5d9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/utopia-php/di/zipball/fb3c45b268018b87dcbbf87ad943ced9eea3bbe2",
-                "reference": "fb3c45b268018b87dcbbf87ad943ced9eea3bbe2",
+                "url": "https://api.github.com/repos/utopia-php/di/zipball/a0c8be65c19570c80e904d58f54bdd901d1d5d9c",
+                "reference": "a0c8be65c19570c80e904d58f54bdd901d1d5d9c",
                 "shasum": ""
             },
             "require": {
@@ -66,7 +66,7 @@
                 "source": "https://github.com/utopia-php/di/tree/main",
                 "issues": "https://github.com/utopia-php/di/issues"
             },
-            "time": "2024-04-18T20:06:02+00:00"
+            "time": "2024-04-22T21:22:44+00:00"
         }
     ],
     "packages-dev": [
@@ -452,12 +452,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "7b52251fae7e1ab8dae54b91d3a5d6f6d52390f0"
+                "reference": "3b03bac1068a585926a14e97692baef8642c2a1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7b52251fae7e1ab8dae54b91d3a5d6f6d52390f0",
-                "reference": "7b52251fae7e1ab8dae54b91d3a5d6f6d52390f0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3b03bac1068a585926a14e97692baef8642c2a1b",
+                "reference": "3b03bac1068a585926a14e97692baef8642c2a1b",
                 "shasum": ""
             },
             "require": {
@@ -503,7 +503,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-21T14:58:44+00:00"
+            "time": "2024-04-22T13:39:03+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
