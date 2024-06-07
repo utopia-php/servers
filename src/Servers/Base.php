@@ -241,7 +241,9 @@ abstract class Base
             $existsInValues = \array_key_exists($key, $values);
             $paramExists = $existsInRequest || $existsInValues;
             $arg = $existsInRequest ? $requestParams[$key] : $param['default'];
-            if (\is_callable($arg)) {
+
+            // Adding is string to avoid PHP built-in functions
+            if (!is_string($arg) && \is_callable($arg)) {
                 $injections = array_map(fn($injection)=>$this->getContainer()->get($injection), $param['injections']);
                 $arg = \call_user_func_array($arg, $injections);
             }
