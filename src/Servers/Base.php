@@ -169,10 +169,13 @@ abstract class Base
 
     /**
      * Set Container
+     *
+     * @return $this
      */
-    public function setContainer(Container $container): void
+    public function setContainer(Container $container): self
     {
         $this->container = $container;
+        return $this;
     }
 
     /**
@@ -239,6 +242,11 @@ abstract class Base
             $paramExists = $existsInRequest || $existsInValues;
             $arg = $existsInRequest ? $requestParams[$key] : $param['default'];
 
+            // Adding is string to avoid PHP built-in functions
+            if (!is_string($arg) && \is_callable($arg)) {
+                $injections = array_map(fn ($injection) =>$this->getContainer()->get($injection), $param['injections']);
+                $arg = \call_user_func_array($arg, $injections);
+            }
             $value = $existsInValues ? $values[$key] : $arg;
 
             /**
@@ -289,7 +297,6 @@ abstract class Base
         $validator = $param['validator']; // checking whether the class exists
 
         if (\is_callable($validator)) {
-
             $dependency = new Dependency();
             $dependency
                 ->setName('_validator:'.$key)

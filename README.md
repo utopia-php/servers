@@ -1,7 +1,6 @@
 # Utopia Servers
 
-[![Build Status](https://travis-ci.com/utopia-php/queue.svg?branch=main)](https://travis-ci.com/utopia-php/queue)
-![Total Downloads](https://img.shields.io/packagist/dt/utopia-php/queue.svg)
+![Total Downloads](https://img.shields.io/packagist/dt/utopia-php/servers.svg)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord)](https://appwrite.io/discord)
 
 Utopia Queue is base library for building Utopia style servers. This library is aiming to be as simple and easy to learn and use. This library is maintained by the [Appwrite team](https://appwrite.io).
