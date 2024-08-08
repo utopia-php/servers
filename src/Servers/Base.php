@@ -244,7 +244,7 @@ abstract class Base
 
             // Adding is string to avoid PHP built-in functions
             if (!is_string($arg) && \is_callable($arg)) {
-                $injections = array_map(fn($injection)=>$this->getContainer()->get($injection), $param['injections']);
+                $injections = array_map(fn ($injection) =>$this->getContainer()->get($injection), $param['injections']);
                 $arg = \call_user_func_array($arg, $injections);
             }
             $value = $existsInValues ? $values[$key] : $arg;
