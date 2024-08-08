@@ -4,7 +4,7 @@
     "type": "library",
     "keywords": ["php","framework", "upf", "utopia", "servers"],
     "license": "MIT",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Team Appwrite",
@@ -25,17 +25,11 @@
     },
     "require": {
         "php": ">=8.0",
-        "utopia-php/di": "dev-feat-framework-v2"
+        "utopia-php/di": "0.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.5",
         "laravel/pint": "^0.2.3",
         "phpstan/phpstan": "^1.8"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/utopia-php/di"
-        }
-    ]
+    }
 }
