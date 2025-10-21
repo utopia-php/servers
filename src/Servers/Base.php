@@ -4,6 +4,7 @@ namespace Utopia\Servers;
 
 use Utopia\DI\Container;
 use Utopia\DI\Dependency;
+use Utopia\Validator;
 
 abstract class Base
 {
