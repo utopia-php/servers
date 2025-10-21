@@ -3,6 +3,7 @@
 namespace Utopia\Servers;
 
 use Utopia\DI\Injection;
+use Utopia\Validator;
 
 class Hook extends Injection
 {
