@@ -146,6 +146,16 @@ class Hook extends Injection
     }
 
     /**
+     * Get Injections
+     *
+     * @return array
+     */
+    public function getInjections(): array
+    {
+        return $this->injections;
+    }
+
+    /**
      * Depenedency
      *
      * @param  string  $name
