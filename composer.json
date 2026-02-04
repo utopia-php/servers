@@ -15,7 +15,7 @@
         "psr-4": {"Utopia\\Servers\\": "src/Servers"}
     },
     "autoload-dev": {
-        "psr-4": {"Tests\\E2E\\": "tests/Servers/Unit"}
+        "psr-4": {"Tests\\Servers\\Unit\\": "tests/Servers/Unit"}
     },
     "scripts":{
         "test": "phpunit",

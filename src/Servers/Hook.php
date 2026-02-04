@@ -2,10 +2,9 @@
 
 namespace Utopia\Servers;
 
-use Utopia\DI\Injection;
 use Utopia\Validator;
 
-class Hook extends Injection
+class Hook
 {
     /**
      * Description
@@ -40,6 +39,13 @@ class Hook extends Injection
     protected array $labels = [];
 
     /**
+     * Action Callback
+     *
+     * @var callable
+     */
+    protected $action;
+
+    /**
      * Injections
      *
      * List of route required injections for action callback
@@ -47,6 +53,12 @@ class Hook extends Injection
      * @var array
      */
     protected array $injections = [];
+
+    public function __construct()
+    {
+        $this->action = function (): void {
+        };
+    }
 
     /**
      * Add Description
@@ -130,7 +142,7 @@ class Hook extends Injection
      */
     public function action(callable $action): static
     {
-        $this->setCallback($action);
+        $this->action = $action;
 
         return $this;
     }
@@ -142,7 +154,7 @@ class Hook extends Injection
      */
     public function getAction()
     {
-        return $this->getCallback();
+        return $this->action;
     }
 
     /**
@@ -156,16 +168,23 @@ class Hook extends Injection
     }
 
     /**
-     * Depenedency
+     * Inject
      *
-     * @param  string  $name
-     * @return self
+     * @param  string  $injection
+     * @return static
      *
-     * @throws Exception
+     * @throws \Exception
      */
-    public function inject(string $name): self
+    public function inject(string $injection): static
     {
-        parent::inject($name);
+        if (array_key_exists($injection, $this->injections)) {
+            throw new \Exception('Injection already declared for '.$injection);
+        }
+
+        $this->injections[$injection] = [
+            'name' => $injection,
+            'order' => count($this->params) + count($this->injections),
+        ];
 
         return $this;
     }
@@ -173,16 +192,19 @@ class Hook extends Injection
     /**
      * Add Param
      *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @param  Validator|callable  $validator
-     * @param  string  $description
-     * @param  bool  $optional
-     * @param  array  $injections
-     * @param  bool  $skipValidation
+     * @param string $key
+     * @param mixed $default
+     * @param Validator|callable $validator
+     * @param string $description
+     * @param bool $optional
+     * @param array $injections
+     * @param bool $skipValidation
+     * @param bool $deprecated
+     * @param string $example
+     * @param string|null $model
      * @return static
      */
-    public function param(string $key, mixed $default, Validator|callable $validator, string $description = '', bool $optional = false, array $injections = [], bool $skipValidation = false): static
+    public function param(string $key, mixed $default, Validator|callable $validator, string $description = '', bool $optional = false, array $injections = [], bool $skipValidation = false, bool $deprecated = false, string $example = '', ?string $model = null): static
     {
         $this->params[$key] = [
             'default' => $default,
@@ -191,11 +213,12 @@ class Hook extends Injection
             'optional' => $optional,
             'injections' => $injections,
             'skipValidation' => $skipValidation,
+            'deprecated' => $deprecated,
+            'example' => $example,
+            'model' => $model,
             'value' => null,
             'order' => count($this->params) + count($this->injections),
         ];
-
-        $this->inject($key);
 
         return $this;
     }
@@ -238,7 +261,7 @@ class Hook extends Injection
     public function setParamValue(string $key, mixed $value): static
     {
         if (!isset($this->params[$key])) {
-            throw new Exception('Unknown key');
+            throw new \Exception('Unknown key');
         }
 
         $this->params[$key]['value'] = $value;
@@ -252,12 +275,12 @@ class Hook extends Injection
      * @param  string  $key
      * @return mixed
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function getParamValue(string $key): mixed
     {
         if (!isset($this->params[$key])) {
-            throw new Exception('Unknown key');
+            throw new \Exception('Unknown key');
         }
 
         return $this->params[$key]['value'];
