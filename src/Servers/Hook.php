@@ -168,6 +168,26 @@ class Hook
     }
 
     /**
+     * Get Dependencies
+     *
+     * @return array
+     */
+    public function getDependencies(): array
+    {
+        if (empty($this->injections)) {
+            return [];
+        }
+
+        $injections = array_values($this->injections);
+
+        usort($injections, static function (array $left, array $right): int {
+            return $left['order'] <=> $right['order'];
+        });
+
+        return array_column($injections, 'name');
+    }
+
+    /**
      * Inject
      *
      * @param  string  $injection
