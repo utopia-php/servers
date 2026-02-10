@@ -73,6 +73,19 @@ class HookTest extends TestCase
         $this->assertEquals('time', $this->hook->getInjections()['time']['name']);
     }
 
+    public function testDependenciesAreReturnedInInjectionOrder()
+    {
+        $this->assertEquals([], $this->hook->getDependencies());
+
+        $this->hook
+            ->inject('user')
+            ->param('x', '', new Text(10))
+            ->inject('time')
+            ->inject('locale');
+
+        $this->assertEquals(['user', 'time', 'locale'], $this->hook->getDependencies());
+    }
+
     public function testParamValuesCanBeSet()
     {
         $this->assertEquals([], $this->hook->getParams());
