@@ -24,8 +24,8 @@
         "lint": "vendor/bin/pint --test"
     },
     "require": {
-        "php": ">=8.0",
-        "utopia-php/di": "0.1.*",
+        "php": ">=8.2",
+        "utopia-php/di": "0.3.*",
         "utopia-php/validators": "0.*"
     },
     "require-dev": {

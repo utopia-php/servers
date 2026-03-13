@@ -27,7 +27,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 ## System Requirements
 
-Utopia Framework requires PHP 8.0 or later. We recommend using the latest PHP version whenever possible.
+Utopia Servers requires PHP 8.2 or later. We recommend using the latest PHP version whenever possible.
 
 ## Copyright and license
 

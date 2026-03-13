@@ -3,7 +3,6 @@
 namespace Utopia\Servers;
 
 use Utopia\DI\Container;
-use Utopia\DI\Dependency;
 use Utopia\Validator;
 
 abstract class Base
@@ -237,6 +236,8 @@ abstract class Base
      */
     protected function prepare(Container $context, Hook $hook, array $values = [], array $requestParams = []): Container
     {
+        $scope = new Container($context);
+
         foreach ($hook->getParams() as $key => $param) { // Get value from route or request object
             $existsInRequest = \array_key_exists($key, $requestParams);
             $existsInValues = \array_key_exists($key, $values);
@@ -245,7 +246,7 @@ abstract class Base
 
             // Adding is string to avoid PHP built-in functions
             if (!is_string($arg) && \is_callable($arg)) {
-                $injections = array_map(fn ($injection) =>$context->get($injection), $param['injections']);
+                $injections = array_map(fn ($injection) => $scope->get($injection), $param['injections']);
                 $arg = \call_user_func_array($arg, $injections);
             }
             $value = $existsInValues ? $values[$key] : $arg;
@@ -259,22 +260,16 @@ abstract class Base
                 }
 
                 if ($paramExists) {
-                    $this->validate($key, $param, $value, $context);
+                    $this->validate($key, $param, $value, $scope);
                 }
             }
 
             $hook->setParamValue($key, $value);
 
-            $dependencyForValue = new Dependency();
-            $dependencyForValue
-                ->setName($key)
-                ->setCallback(fn () => $value)
-            ;
-
-            $context->set($dependencyForValue);
+            $scope->set($key, fn () => $value);
         }
 
-        return $context;
+        return $scope;
     }
 
     /**
@@ -298,17 +293,9 @@ abstract class Base
         $validator = $param['validator']; // checking whether the class exists
 
         if (\is_callable($validator)) {
-            $dependency = new Dependency();
-            $dependency
-                ->setName('_validator:'.$key)
-                ->setCallback($param['validator'])
-            ;
-
-            foreach ($param['injections'] as $injection) {
-                $dependency->inject($injection);
-            }
-
-            $validator = $context->inject($dependency);
+            $validatorKey = '_validator:' . $key;
+            $context->set($validatorKey, $validator, $param['injections']);
+            $validator = $context->get($validatorKey);
         }
 
         if (!$validator instanceof Validator) { // is the validator object an instance of the Validator class
