@@ -266,7 +266,7 @@ abstract class Base
 
             $hook->setParamValue($key, $value);
 
-            $scope->set($key, fn () => $value, []);
+            $scope->set($key, fn () => $value);
         }
 
         return $scope;
