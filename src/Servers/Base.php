@@ -239,10 +239,20 @@ abstract class Base
         $scope = new Container($context);
 
         foreach ($hook->getParams() as $key => $param) { // Get value from route or request object
-            $existsInRequest = \array_key_exists($key, $requestParams);
+            $actualKey = $key;
+            if (!\array_key_exists($key, $requestParams) && !empty($param['aliases'])) {
+                foreach ($param['aliases'] as $alias) {
+                    if (\array_key_exists($alias, $requestParams)) {
+                        $actualKey = $alias;
+                        break;
+                    }
+                }
+            }
+
+            $existsInRequest = \array_key_exists($actualKey, $requestParams);
             $existsInValues = \array_key_exists($key, $values);
             $paramExists = $existsInRequest || $existsInValues;
-            $arg = $existsInRequest ? $requestParams[$key] : $param['default'];
+            $arg = $existsInRequest ? $requestParams[$actualKey] : $param['default'];
 
             // Adding is string to avoid PHP built-in functions
             if (!is_string($arg) && \is_callable($arg)) {
