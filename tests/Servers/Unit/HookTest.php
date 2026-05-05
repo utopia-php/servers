@@ -58,6 +58,29 @@ class HookTest extends TestCase
         $this->assertCount(2, $this->hook->getParams());
     }
 
+    public function testParamAliasesDefaultEmpty()
+    {
+        $this->hook->param('x', '', new Text(10));
+
+        $params = $this->hook->getParams();
+        $this->assertArrayHasKey('aliases', $params['x']);
+        $this->assertSame([], $params['x']['aliases']);
+    }
+
+    public function testParamAliasesCanBeSet()
+    {
+        $this->hook->param(
+            'projectId',
+            '',
+            new Text(64),
+            description: '',
+            aliases: ['project', 'project_id']
+        );
+
+        $params = $this->hook->getParams();
+        $this->assertSame(['project', 'project_id'], $params['projectId']['aliases']);
+    }
+
     public function testResourcesCanBeInjected()
     {
         $this->assertEquals([], $this->hook->getInjections());
