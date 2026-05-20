@@ -81,6 +81,25 @@ class HookTest extends TestCase
         $this->assertSame(['project', 'project_id'], $params['projectId']['aliases']);
     }
 
+    public function testParamEnumCanBeSet()
+    {
+        $enum = new \stdClass();
+        $enum->name = 'ArticleStatus';
+        $enum->map = ['draft' => 'Draft', 'published' => 'Published'];
+
+        $this->hook->param(
+            'status',
+            'draft',
+            new Text(32),
+            description: 'Status.',
+            optional: true,
+            enum: $enum
+        );
+
+        $params = $this->hook->getParams();
+        $this->assertSame($enum, $params['status']['enum']);
+    }
+
     public function testResourcesCanBeInjected()
     {
         $this->assertEquals([], $this->hook->getInjections());
