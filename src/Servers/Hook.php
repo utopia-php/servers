@@ -223,9 +223,10 @@ class Hook
      * @param string $example
      * @param string|null $model
      * @param array $aliases
+     * @param object|null $enum
      * @return static
      */
-    public function param(string $key, mixed $default, Validator|callable $validator, string $description = '', bool $optional = false, array $injections = [], bool $skipValidation = false, bool $deprecated = false, string $example = '', ?string $model = null, array $aliases = []): static
+    public function param(string $key, mixed $default, Validator|callable $validator, string $description = '', bool $optional = false, array $injections = [], bool $skipValidation = false, bool $deprecated = false, string $example = '', ?string $model = null, array $aliases = [], ?object $enum = null): static
     {
         $this->params[$key] = [
             'default' => $default,
@@ -238,6 +239,7 @@ class Hook
             'example' => $example,
             'model' => $model,
             'aliases' => $aliases,
+            'enum' => $enum,
             'value' => null,
             'order' => count($this->params) + count($this->injections),
         ];
